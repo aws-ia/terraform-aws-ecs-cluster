@@ -23,9 +23,9 @@ variable "tags" {
   default     = {}
 }
 
-variable "ami_name" {
-  description = "Name filter for EC2 AMI lookup"
-  default     = "amzn2-ami-ecs-hvm-2.0.????????-x86_64-ebs"
+variable "image_id" {
+  description = "AMI image_id for ECS instance"
+  default     = ""
 }
 
 variable "instance_type" {

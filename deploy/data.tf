@@ -2,17 +2,20 @@ data "aws_caller_identity" "current" {}
 
 data "aws_region" "current" {}
 
-data "aws_ami" "image" {
+data "aws_ami" "ecs" {
+  most_recent = true
+
   filter {
     name   = "name"
-    values = [var.ami_name]
+    values = ["amzn-ami-*-amazon-ecs-optimized"]
   }
+
   filter {
-    name   = "state"
-    values = ["available"]
+    name   = "virtualization-type"
+    values = ["hvm"]
   }
-  most_recent = true
-  owners      = ["amazon"]
+
+  owners = ["amazon"]
 }
 
 data "template_file" "ecs_optimized" {

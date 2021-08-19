@@ -130,8 +130,9 @@ resource "aws_iam_instance_profile" "instance_profile" {
 ######################################
 
 resource "aws_launch_template" "ecs_launch_template" {
-  name_prefix   = "${var.name}-template-"
-  image_id      = data.aws_ami.image.image_id
+  name_prefix = "${var.name}-template-"
+  image_id    = var.image_id != "" ? var.image_id : data.aws_ami.ecs.id
+
   instance_type = var.instance_type
   user_data     = base64encode(data.template_file.ecs_optimized.rendered)
   iam_instance_profile {
@@ -163,12 +164,10 @@ resource "aws_launch_template" "ecs_launch_template" {
 ######################################
 
 module "ecs_cluster" {
-  source                                   = "../"
-  region                                   = var.region
-  name                                     = var.name
-  launch_template_id                       = aws_launch_template.ecs_launch_template.id
-  asg_max_size                             = 5
-  on_demand_base_capacity                  = 2
-  on_demand_percentage_above_base_capacity = 10
-  vpc_subnet_ids                           = [module.ecs_vpc.PrivateSubnet1AID, module.ecs_vpc.PrivateSubnet2AID, module.ecs_vpc.PrivateSubnet3AID]
+  source             = "../"
+  region             = var.region
+  name               = var.name
+  launch_template_id = aws_launch_template.ecs_launch_template.id
+  asg_max_size       = 5
+  vpc_subnet_ids     = [module.ecs_vpc.PrivateSubnet1AID, module.ecs_vpc.PrivateSubnet2AID, module.ecs_vpc.PrivateSubnet3AID]
 }
