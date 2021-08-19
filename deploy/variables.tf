@@ -32,8 +32,3 @@ variable "instance_type" {
   description = "Type of EC2 instance to be launched"
   default     = "t3.micro"
 }
-
-variable "iam_instance_profile" {
-  description = "Name of IAM instance profile associated with launched instances"
-  default     = null
-}
