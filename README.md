@@ -58,3 +58,5 @@ terraform apply
 ```
 terraform apply -var-file="$HOME/.aws/terraform.tfvars"
 ```
+
+11. Follow the documentation [here](https://aws.amazon.com/getting-started/hands-on/deploy-docker-containers/) to deploy docker containers to Amazon ECS and scale them to the desired count as needed.
