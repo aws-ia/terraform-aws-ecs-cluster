@@ -62,4 +62,42 @@ data "aws_iam_policy_document" "instance_policy" {
       )
     ]
   }
+
+  statement {
+    sid    = "ECSAccessPolicy"
+    effect = "Allow"
+
+    actions = [
+      "ec2:DescribeTags",
+      "ecs:CreateCluster",
+      "ecs:DeregisterContainerInstance",
+      "ecs:DiscoverPollEndpoint",
+      "ecs:Poll",
+      "ecs:RegisterContainerInstance",
+      "ecs:StartTelemetrySession",
+      "ecs:UpdateContainerInstancesState",
+      "ecs:SubmitContainerStateChange",
+      "ecs:SubmitTaskStateChange",
+      "ecr:GetAuthorizationToken",
+      "ecr:BatchCheckLayerAvailability",
+      "ecr:GetDownloadUrlForLayer",
+      "ecr:BatchGetImage",
+      "logs:CreateLogStream",
+      "logs:PutLogEvents"
+    ]
+
+    resources = [
+      format(
+        "arn:aws:logs:%s:%s:log-group:%s-loggroup",
+        data.aws_region.current.name,
+        data.aws_caller_identity.current.account_id,
+        var.name
+      ),
+      format(
+        "arn:aws:ecs:%s:%s:cluster/*",
+        data.aws_region.current.name,
+        data.aws_caller_identity.current.account_id
+      )
+    ]
+  }
 }

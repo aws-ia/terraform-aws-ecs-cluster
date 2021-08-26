@@ -110,11 +110,6 @@ resource "aws_iam_role" "instance" {
 EOF
 }
 
-resource "aws_iam_role_policy_attachment" "ecs_policy" {
-  role       = aws_iam_role.instance.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
-}
-
 resource "aws_iam_role_policy_attachment" "instance_policy" {
   role       = aws_iam_role.instance.name
   policy_arn = aws_iam_policy.instance_policy.arn

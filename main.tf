@@ -1,3 +1,11 @@
+provider "aws" {
+  region = var.region
+}
+
+terraform {
+  required_version = ">= 1.0.0"
+}
+
 resource "aws_kms_key" "kmskey" {
   description             = "KMS key for ${var.name} cluster"
   deletion_window_in_days = 7
