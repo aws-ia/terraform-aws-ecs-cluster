@@ -23,7 +23,8 @@ data "aws_iam_policy_document" "cloudwatch" {
       ]
     }
     resources = [format(
-      "arn:aws:kms:%s:%s:key/*",
+      "arn:%s:kms:%s:%s:key/*",
+      data.aws_partition.current.partition,
       data.aws_region.current.name,
       data.aws_caller_identity.current.account_id
     )]
@@ -48,7 +49,8 @@ data "aws_iam_policy_document" "cloudwatch" {
       ]
     }
     resources = [format(
-      "arn:aws:kms:%s:%s:key/*",
+      "arn:%s:kms:%s:%s:key/*",
+      data.aws_partition.current.partition,
       data.aws_region.current.name,
       data.aws_caller_identity.current.account_id
     )]

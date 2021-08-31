@@ -1,5 +1,7 @@
 data "aws_caller_identity" "current" {}
 
+data "aws_partition" "current" {}
+
 data "aws_region" "current" {}
 
 data "aws_ami" "ecs" {
@@ -88,13 +90,15 @@ data "aws_iam_policy_document" "instance_policy" {
 
     resources = [
       format(
-        "arn:aws:logs:%s:%s:log-group:%s-loggroup",
+        "arn:%s:logs:%s:%s:log-group:%s-loggroup",
+        data.aws_partition.current.partition,
         data.aws_region.current.name,
         data.aws_caller_identity.current.account_id,
         var.name
       ),
       format(
-        "arn:aws:ecs:%s:%s:cluster/*",
+        "arn:%s:ecs:%s:%s:cluster/*",
+        data.aws_partition.current.partition,
         data.aws_region.current.name,
         data.aws_caller_identity.current.account_id
       )
