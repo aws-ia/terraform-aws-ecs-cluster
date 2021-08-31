@@ -85,13 +85,13 @@ resource "aws_security_group_rule" "ecs_security_group_egress" {
 ######################################
 
 resource "aws_iam_policy" "instance_policy" {
-  name   = "${var.name}-ecs-instance"
-  path   = "/"
-  policy = data.aws_iam_policy_document.instance_policy.json
+  name_prefix = "${var.name}-ecs-instance"
+  path        = "/"
+  policy      = data.aws_iam_policy_document.instance_policy.json
 }
 
 resource "aws_iam_role" "instance" {
-  name = "${var.name}-instance-role"
+  name_prefix = "${var.name}-instance-role"
 
   assume_role_policy = <<EOF
 {
@@ -116,8 +116,8 @@ resource "aws_iam_role_policy_attachment" "instance_policy" {
 }
 
 resource "aws_iam_instance_profile" "instance_profile" {
-  name = "${var.name}-instance-profile"
-  role = aws_iam_role.instance.name
+  name_prefix = "${var.name}-instance-profile"
+  role        = aws_iam_role.instance.name
 }
 
 ######################################
