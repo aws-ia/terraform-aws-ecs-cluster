@@ -69,10 +69,10 @@ resource "aws_autoscaling_group" "capacity_provider_asg" {
   min_size             = 0
   desired_capacity     = 1
   capacity_rebalance   = true
-  launch_configuration = var.launch_configuration
+  launch_configuration = var.launch_configuration == null || var.launch_configuration == "" ? null : var.launch_configuration
 
   dynamic "launch_template" {
-    for_each = var.launch_template_id == null ? [] : [var.launch_template_id]
+    for_each = var.launch_template_id == null || var.launch_template_id == "" ? [] : [var.launch_template_id]
 
     content {
       id      = var.launch_template_id

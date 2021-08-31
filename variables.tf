@@ -13,13 +13,11 @@ variable "name" {
 variable "launch_template_id" {
   type        = string
   description = "ID of the launch template for use by AutoScalingGroup to create new instances"
-  default     = null
 }
 
 variable "launch_configuration" {
   type        = string
   description = "Name of the launch configuration for use by AutoScalingGroup to create new instances"
-  default     = null
 }
 
 variable "asg_max_size" {
