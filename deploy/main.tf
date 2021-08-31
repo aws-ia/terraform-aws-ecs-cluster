@@ -159,10 +159,11 @@ resource "aws_launch_template" "ecs_launch_template" {
 ######################################
 
 module "ecs_cluster" {
-  source             = "../"
-  region             = var.region
-  name               = var.name
-  launch_template_id = aws_launch_template.ecs_launch_template.id
-  asg_max_size       = 5
-  vpc_subnet_ids     = [module.ecs_vpc.PrivateSubnet1AID, module.ecs_vpc.PrivateSubnet2AID, module.ecs_vpc.PrivateSubnet3AID]
+  source               = "../"
+  region               = var.region
+  name                 = var.name
+  launch_template_id   = aws_launch_template.ecs_launch_template.id
+  launch_configuration = null
+  asg_max_size         = 5
+  vpc_subnet_ids       = [module.ecs_vpc.PrivateSubnet1AID, module.ecs_vpc.PrivateSubnet2AID, module.ecs_vpc.PrivateSubnet3AID]
 }
