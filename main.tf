@@ -6,6 +6,12 @@ terraform {
   required_version = ">= 1.0.0"
 }
 
+resource "aws_iam_service_linked_role" "ecs_role" {
+  count            = var.create_service_role ? 1 : 0
+  aws_service_name = "ecs.amazonaws.com"
+  description      = "Service linked role for AWS ECS Service"
+}
+
 resource "aws_kms_key" "kmskey" {
   description             = "KMS key for ${var.name} cluster"
   deletion_window_in_days = 7
@@ -60,6 +66,8 @@ resource "aws_ecs_capacity_provider" "capacity_provider" {
       maximum_scaling_step_size = 1
     }
   }
+
+  depends_on = [aws_iam_service_linked_role.ecs_role]
 }
 
 resource "aws_autoscaling_group" "capacity_provider_asg" {
