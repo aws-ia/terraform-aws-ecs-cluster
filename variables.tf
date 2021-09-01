@@ -38,3 +38,9 @@ variable "vpc_subnet_ids" {
   description = "List of VPC subnets to put instances in"
   default     = []
 }
+
+variable "create_service_role" {
+  description = "Variable to decide whether IAM Service linked role should be created for ECS"
+  default     = true
+  type        = bool
+}
