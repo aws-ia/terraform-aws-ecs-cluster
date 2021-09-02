@@ -7,7 +7,7 @@ terraform {
 }
 
 resource "aws_iam_service_linked_role" "ecs_role" {
-  count            = var.create_service_role ? 1 : 0
+  count            = var.create_service_role == true ? 1 : 0
   aws_service_name = "ecs.amazonaws.com"
   description      = "Service linked role for AWS ECS Service"
 }
