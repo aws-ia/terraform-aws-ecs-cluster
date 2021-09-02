@@ -32,3 +32,10 @@ variable "instance_type" {
   description = "Type of EC2 instance to be launched"
   default     = "t3.micro"
 }
+
+variable "create_service_role" {
+  description = "Variable to decide whether IAM Service linked role should be created for ECS"
+  default     = false
+  type        = bool
+}
+
