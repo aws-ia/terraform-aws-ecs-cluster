@@ -1,6 +1,5 @@
 terraform {
   required_version = ">= 1.0.0"
-  backend "remote" {}
 }
 
 ######################################
@@ -160,6 +159,7 @@ resource "aws_launch_template" "ecs_launch_template" {
 
 module "ecs_cluster" {
   source               = "../"
+  create_service_role  = var.create_service_role
   region               = var.region
   name                 = var.name
   launch_template_id   = aws_launch_template.ecs_launch_template.id
