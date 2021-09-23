@@ -1,3 +1,4 @@
+> Note: This module is in alpha state and is likely to contain bugs and updates may introduce breaking changes. It is not recommended for production use at this time.
 # Terraform Amazon ECS on AutoScaling Group Module 
 Authors: Praveen Kumar Jeyarajan (pjeyaraj@amazon.com), Viyoma Sachdeva (viyoms@amazon.com) and Neel Shah (shahneel@amazon.com)
 
