@@ -5,7 +5,7 @@ Authors: Praveen Kumar Jeyarajan (pjeyaraj@amazon.com), Viyoma Sachdeva (viyoms@
 This Terraform module deploys Amazon Elastic Container Service (Amazon ECS) backed by AutoScaling Group (ASG). It deploys a AutoScaling Group created from the Launch Template the user provides. It then deploys a Amazon ECS cluster backed by the ASG, created before, as capacity provider. Users can create the necessary resources for the Launch Template as needed like the VPC, subnets, security group, etc. The module uses the Launch Template ID to create the ASG for use by the Amazon ECS.
 
 ## Deployment steps
-### Manage state remotely using Terrafrom Cloud
+### Manage state remotely using Terraform Cloud
 1. Install Terraform. For instructions and a video tutorial, see [Install Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli). 
 2. Sign up and log into Terraform Cloud. (There is a free tier available.)
 3. Configure Terraform Cloud API access. Run the following to generate a Terraform Cloud token from the command line interface:
@@ -50,7 +50,7 @@ cd ../deploy
 terraform init
 ```
 
-10. Setup the values for the varibales and start a Terraform run using the configuration files in your deploy directory. Run the following command:
+10. Setup the values for the variables and start a Terraform run using the configuration files in your deploy directory. Run the following command:
 
 ```
 terraform apply
