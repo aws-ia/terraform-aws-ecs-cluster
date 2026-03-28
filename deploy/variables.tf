@@ -30,7 +30,7 @@ variable "image_id" {
 
 variable "instance_type" {
   description = "Type of EC2 instance to be launched"
-  default     = "t3.micro"
+  default     = "m4.xlarge"
 }
 
 variable "create_service_role" {
